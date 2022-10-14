@@ -27,7 +27,7 @@ const createCard = (req, res) => {
 };
 
 const deleteCard = (req, res) => {
-  Card.findByIdAndRemove(req.params.cardId).orFail(new Error('NotFoud'))
+  Card.findByIdAndRemove(req.params.cardId).orFail(new Error('NotFound'))
     .then((card) => res.send({ data: card }))
     .catch((e) => {
       if (e instanceof mongoose.Error.CastError) {
@@ -50,7 +50,7 @@ const likeCard = (req, res) => {
       new: true,
       runValidators: true,
     },
-  ).orFail(new Error('NotFoud'))
+  ).orFail(new Error('NotFound'))
     .then((card) => res.send({ data: card }))
     .catch((e) => {
       if (e instanceof mongoose.Error.CastError) {
@@ -73,7 +73,7 @@ const dislikeCard = (req, res) => {
       new: true,
       runValidators: true,
     },
-  ).orFail(new Error('NotFoud'))
+  ).orFail(new Error('NotFound'))
     .then((card) => res.status(SUCCESS_CODE).send({ data: card }))
     .catch((e) => {
       if (e instanceof mongoose.Error.CastError) {
