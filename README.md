@@ -1,8 +1,8 @@
-[Tests for sprint 13](https://github.com/${MariiaGudkova}/${express-mesto-gha}/actions/workflows/tests-13-sprint.yml/badge.svg)
+[![Tests for sprint 13](https://github.com/${MariiaGudkova}/${express-mesto-gha}/actions/workflows/tests-13-sprint.yml/badge.svg)](https://github.com/${MariiaGudkova}/${express-mesto-gha}/actions/workflows/tests-13-sprint.yml) 
 
-[Tests for sprint 14](https://github.com/${MariiaGudkova}/${express-mesto-gha}/actions/workflows/tests-14-sprint.yml/badge.svg)
+[![Tests for sprint 14](https://github.com/${MariiaGudkova}/${express-mesto-gha}/actions/workflows/tests-14-sprint.yml/badge.svg)](https://github.com/${MariiaGudkova}/${express-mesto-gha}/actions/workflows/tests-14-sprint.yml)
 
-# **Проект: Сервис Mesto подключение сервера на Express** <img src="https://media.giphy.com/media/kp8xp7w2CsLSJ1i1M9/giphy.gif" width="70" height="70">:
+# **Проект: Сервис Mesto подключение сервера на Express** <img src="https://media.giphy.com/media/kp8xp7w2CsLSJ1i1M9/giphy.gif" width="70" height="70">
 
 
 <img src="https://media.giphy.com/media/DZR39sOOQWP8A7UoVs/giphy.gif" width="400" height="400">
