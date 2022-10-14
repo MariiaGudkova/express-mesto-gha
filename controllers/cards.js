@@ -27,11 +27,7 @@ const createCard = (req, res) => {
 };
 
 const deleteCard = (req, res) => {
-  const { _id } = req.body;
-  Card.findByIdAndRemove(req.user._id, { _id }, {
-    new: true,
-    runValidators: true,
-  }).orFail(new Error('NotFoud'))
+  Card.findByIdAndRemove(req.params.cardId).orFail(new Error('NotFoud'))
     .then((card) => res.send({ data: card }))
     .catch((e) => {
       if (e instanceof mongoose.Error.CastError) {
