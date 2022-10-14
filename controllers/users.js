@@ -19,7 +19,7 @@ const getUserById = (req, res) => {
     })
     .catch((e) => {
       if (e instanceof mongoose.Error.CastError) {
-        res.status(VALIDATION_ERROR_CODE).send({ message: 'Пользователь по указанному _id не найден', error: e });
+        res.status(VALIDATION_ERROR_CODE).send({ message: 'Передан некорректный _id пользователя', error: e });
         return;
       }
       if (e.message === 'NotFound') {

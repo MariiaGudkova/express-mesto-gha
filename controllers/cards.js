@@ -27,10 +27,14 @@ const createCard = (req, res) => {
 
 const deleteCard = (req, res) => {
   const { _id } = req.body;
-  Card.findByIdAndRemove(req.user._id, { _id })
+  Card.findByIdAndRemove(req.user._id, { _id }).orFail(new Error('NotFoud'))
     .then((card) => res.send({ data: card }))
     .catch((e) => {
       if (e instanceof mongoose.Error.CastError) {
+        res.status(VALIDATION_ERROR_CODE).send({ message: 'Передан некорректный _id карточки', error: e });
+        return;
+      }
+      if (e.message === 'NotFound') {
         res.status(NOTFOUND_ERROR_CODE).send({ message: 'Карточка с указанным _id не найдена', error: e });
         return;
       }
