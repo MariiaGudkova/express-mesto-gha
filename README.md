@@ -1,16 +1,16 @@
-[![Tests](https://github.com/${MariiaGudkova
-}/${express-mesto-gha}/actions/workflows/tests-13-sprint.yml/badge.svg)](https://github.com/${MariiaGudkova}/${express-mesto-gha}/actions/workflows/tests-13-sprint.yml) [![Tests](https://github.com/${MariiaGudkova
-}/${express-mesto-gha}/actions/workflows/tests-14-sprint.yml/badge.svg)](https://github.com/${MariiaGudkova}/${express-mesto-gha}/actions/workflows/tests-14-sprint.yml)
+[![Tests for sprint 13](https://github.com/${MariiaGudkova}/${express-mesto-gha}/actions/workflows/tests-13-sprint.yml/badge.svg)](https://github.com/${MariiaGudkova}/${express-mesto-gha}/actions/workflows/tests-13-sprint.yml) 
 
-# **Проект: Сервис Mesto подключение сервера на Express** <img src="https://media.giphy.com/media/ZdO1mXD9kgpCslD5ka/giphy.gif" width="70" height="70">:
+[![Tests for sprint 14](https://github.com/${MariiaGudkova}/${express-mesto-gha}/actions/workflows/tests-14-sprint.yml/badge.svg)](https://github.com/${MariiaGudkova}/${express-mesto-gha}/actions/workflows/tests-14-sprint.yml)
+
+# **Проект: Сервис Mesto подключение сервера на Express** <img src="https://media.giphy.com/media/kp8xp7w2CsLSJ1i1M9/giphy.gif" width="70" height="70">:
 
 
-<img src="https://giphy.com/clips/jess-computer-laptop-typing-tdLMeEDsWCow4Pb553">
+<img src="https://media.giphy.com/media/DZR39sOOQWP8A7UoVs/giphy.gif">
 
 ## **Описание проекта**
 
 _Сервис Mesto - это учебная интерактивная страница, куда можно добавлять фотографии, удалять их и ставить лайки._
-_В проекте были отработаны навыки<img src="https://media.giphy.com/media/ZdO1mXD9kgpCslD5ka/giphy.gif" width="70" height="70">:_
+_В проекте были отработаны навыки<img src="https://media.giphy.com/media/YO0zXMgEF0QwxUoa7E/giphy.gif" width="70" height="70">:_
 
 - Создание сервера на Express
 - Работа с Middleware
@@ -21,7 +21,7 @@ _В проекте были отработаны навыки<img src="https://m
 - Использование роутов и контроллеров для структуризации кода
 - Обработка серверных ошибок
 
-## **Функционал** <img src="https://media.giphy.com/media/ZdO1mXD9kgpCslD5ka/giphy.gif" width="70" height="70">
+## **Функционал** <img src="https://media.giphy.com/media/z0dQcTi6EouwjKol5D/giphy.gif" width="70" height="70">
 
 - Получение данных всех пользователей
 - Создание пользователя
@@ -41,4 +41,3 @@ _В проекте были отработаны навыки<img src="https://m
 
 
 
-<img src="https://komarev.com/ghpvc/?username=your-github-username&style=flat-square&color=06a303" alt=""/>
