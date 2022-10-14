@@ -45,12 +45,12 @@ const deleteCard = (req, res) => {
 const likeCard = (req, res) => {
   const { _id } = req.body;
   Card.findByIdAndUpdate(
-    _id,
+    _id.orFail(new Error('NotFoud')),
     { $addToSet: { likes: req.user._id } },
     {
       new: true,
       runValidators: true,
-    }.orFail(new Error('NotFoud')),
+    },
   )
     .then((card) => res.send({ data: card }))
     .catch((e) => {
@@ -69,12 +69,12 @@ const likeCard = (req, res) => {
 const dislikeCard = (req, res) => {
   const { _id } = req.body;
   Card.findByIdAndUpdate(
-    _id,
+    _id.orFail(new Error('NotFoud')),
     { $pull: { likes: req.user._id } },
     {
       new: true,
       runValidators: true,
-    }.orFail(new Error('NotFoud')),
+    },
   )
     .then((card) => res.send({ data: card }))
     .catch((e) => {
