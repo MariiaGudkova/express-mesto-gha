@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const Card = require('../models/card');
 
+const SUCCESS_CODE = 200;
 const VALIDATION_ERROR_CODE = 400;
 const NOTFOUND_ERROR_CODE = 404;
 const SERVER_ERROR_CODE = 500;
@@ -27,8 +28,11 @@ const createCard = (req, res) => {
 
 const deleteCard = (req, res) => {
   const { _id } = req.body;
-  Card.findByIdAndRemove(req.user._id, { _id }).orFail(new Error('NotFoud'))
-    .then((card) => res.send({ data: card }))
+  Card.findByIdAndRemove(req.user._id, { _id }, {
+    new: true,
+    runValidators: true,
+  }).orFail(new Error('NotFoud'))
+    .then((card) => res.status(SUCCESS_CODE).send({ data: card }))
     .catch((e) => {
       if (e instanceof mongoose.Error.CastError) {
         res.status(VALIDATION_ERROR_CODE).send({ message: 'Передан некорректный _id карточки', error: e });
@@ -52,7 +56,7 @@ const likeCard = (req, res) => {
       runValidators: true,
     },
   ).orFail(new Error('NotFoud'))
-    .then((card) => res.send({ data: card }))
+    .then((card) => res.status(SUCCESS_CODE).send({ data: card }))
     .catch((e) => {
       if (e instanceof mongoose.Error.CastError) {
         res.status(VALIDATION_ERROR_CODE).send({ message: 'Передан некорректный _id карточки', error: e });
@@ -76,7 +80,7 @@ const dislikeCard = (req, res) => {
       runValidators: true,
     },
   ).orFail(new Error('NotFoud'))
-    .then((card) => res.send({ data: card }))
+    .then((card) => res.status(SUCCESS_CODE).send({ data: card }))
     .catch((e) => {
       if (e instanceof mongoose.Error.CastError) {
         res.status(VALIDATION_ERROR_CODE).send({ message: 'Передан некорректный _id карточки', error: e });

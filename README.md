@@ -40,4 +40,6 @@ _В проекте были отработаны навыки<img src="https://m
 </div>
 
 
+<img src="https://komarev.com/ghpvc/?username=MariiaGudkova&style=flat-square&color=ff69b4" alt=""/>
+
 
