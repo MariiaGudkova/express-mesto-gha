@@ -12,7 +12,7 @@ const getUsers = (req, res) => {
 };
 
 const getUserById = (req, res) => {
-  User.findById(req.params.userId).orFail(new Error('NotFoud'))
+  User.findById(req.params.userId).orFail()
     .then((user) => {
       res.send({ data: user });
     })
@@ -21,7 +21,7 @@ const getUserById = (req, res) => {
         res.status(VALIDATION_ERROR_CODE).send({ message: 'Передан некорректный _id пользователя' });
         return;
       }
-      if (e.message === 'NotFound') {
+      if (e instanceof mongoose.Error.DocumentNotFoundError) {
         res.status(NOTFOUND_ERROR_CODE).send({ message: 'Пользователь по указанному _id не найден' });
         return;
       }
@@ -47,14 +47,14 @@ const updateUserProfile = (req, res) => {
   User.findByIdAndUpdate(req.user._id, { name, about }, {
     new: true,
     runValidators: true,
-  })
+  }).orFail()
     .then((user) => res.send({ data: user }))
     .catch((e) => {
-      if (e instanceof mongoose.Error.ValidationError) {
+      if (e instanceof mongoose.Error.ValidationError || mongoose.Error.CastError) {
         res.status(VALIDATION_ERROR_CODE).send({ message: 'Переданы некорректные данные при обновлении профиля' });
         return;
       }
-      if (e instanceof mongoose.Error.CastError) {
+      if (e instanceof mongoose.Error.DocumentNotFoundError) {
         res.status(NOTFOUND_ERROR_CODE).send({ message: 'Пользователь по указанному _id не найден' });
         return;
       }
@@ -67,14 +67,14 @@ const updateUserProfileAvatar = (req, res) => {
   User.findByIdAndUpdate(req.user._id, { avatar }, {
     new: true,
     runValidators: true,
-  })
+  }).orFail()
     .then((user) => res.send({ data: user }))
     .catch((e) => {
-      if (e instanceof mongoose.Error.ValidationError) {
+      if (e instanceof mongoose.Error.ValidationError || mongoose.Error.CastError) {
         res.status(VALIDATION_ERROR_CODE).send({ message: 'Переданы некорректные данные при обновлении аватара' });
         return;
       }
-      if (e instanceof mongoose.Error.CastError) {
+      if (e instanceof mongoose.Error.DocumentNotFoundError) {
         res.status(NOTFOUND_ERROR_CODE).send({ message: 'Пользователь по указанному _id не найден' });
         return;
       }

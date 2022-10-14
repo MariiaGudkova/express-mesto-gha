@@ -11,6 +11,7 @@ module.exports = {
   },
   plugins: [],
   rules: {
+    'no-console': 'off',
     'no-underscore-dangle': [
       'error', {
         allow: [

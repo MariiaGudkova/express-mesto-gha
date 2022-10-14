@@ -27,14 +27,14 @@ const createCard = (req, res) => {
 };
 
 const deleteCard = (req, res) => {
-  Card.findByIdAndRemove(req.params.cardId).orFail(new Error('NotFound'))
+  Card.findByIdAndRemove(req.params.cardId).orFail()
     .then((card) => res.send({ data: card }))
     .catch((e) => {
       if (e instanceof mongoose.Error.CastError) {
         res.status(VALIDATION_ERROR_CODE).send({ message: 'Передан некорректный _id карточки' });
         return;
       }
-      if (e.message === 'NotFound') {
+      if (e instanceof mongoose.Error.DocumentNotFoundError) {
         res.status(NOTFOUND_ERROR_CODE).send({ message: 'Карточка с указанным _id не найдена' });
         return;
       }
@@ -50,14 +50,14 @@ const likeCard = (req, res) => {
       new: true,
       runValidators: true,
     },
-  ).orFail(new Error('NotFound'))
+  ).orFail()
     .then((card) => res.send({ data: card }))
     .catch((e) => {
       if (e instanceof mongoose.Error.CastError) {
         res.status(VALIDATION_ERROR_CODE).send({ message: 'Передан некорректный _id карточки' });
         return;
       }
-      if (e.message === 'NotFound') {
+      if (e instanceof mongoose.Error.DocumentNotFoundError) {
         res.status(NOTFOUND_ERROR_CODE).send({ message: 'Карточка с указанным _id не найдена' });
         return;
       }
@@ -73,14 +73,14 @@ const dislikeCard = (req, res) => {
       new: true,
       runValidators: true,
     },
-  ).orFail(new Error('NotFound'))
+  ).orFail()
     .then((card) => res.status(SUCCESS_CODE).send({ data: card }))
     .catch((e) => {
       if (e instanceof mongoose.Error.CastError) {
         res.status(VALIDATION_ERROR_CODE).send({ message: 'Передан некорректный _id карточки' });
         return;
       }
-      if (e.message === 'NotFound') {
+      if (e instanceof mongoose.Error.DocumentNotFoundError) {
         res.status(NOTFOUND_ERROR_CODE).send({ message: 'Карточка с указанным _id не найдена' });
         return;
       }
