@@ -18,12 +18,12 @@ const getUserById = (req, res) => {
       res.send({ data: user });
     })
     .catch((e) => {
-      if (e.message === 'NotFound') {
-        res.status(NOTFOUND_ERROR_CODE).send({ message: 'Пользователь по указанному _id не найден', error: e });
-        return;
-      }
       if (e instanceof mongoose.Error.CastError) {
         res.status(VALIDATION_ERROR_CODE).send({ message: 'Пользователь по указанному _id не найден', error: e });
+        return;
+      }
+      if (e.message === 'NotFound') {
+        res.status(NOTFOUND_ERROR_CODE).send({ message: 'Пользователь по указанному _id не найден', error: e });
         return;
       }
       res.status(SERVER_ERROR_CODE).send({ message: 'На сервере произошла ошибка', error: e });
