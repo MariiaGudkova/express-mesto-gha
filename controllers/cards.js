@@ -50,16 +50,16 @@ const likeCard = (req, res) => {
     {
       new: true,
       runValidators: true,
-    },
+    }.orFail(new Error('NotFoud')),
   )
     .then((card) => res.send({ data: card }))
     .catch((e) => {
-      if (e instanceof mongoose.Error.ValidationError) {
-        res.status(VALIDATION_ERROR_CODE).send({ message: 'Переданы некорректные данные для постановки лайка', error: e });
+      if (e instanceof mongoose.Error.CastError) {
+        res.status(VALIDATION_ERROR_CODE).send({ message: 'Передан некорректный _id карточки', error: e });
         return;
       }
-      if (e instanceof mongoose.Error.CastError) {
-        res.status(NOTFOUND_ERROR_CODE).send({ message: 'Передан несуществующий _id карточки', error: e });
+      if (e.message === 'NotFound') {
+        res.status(NOTFOUND_ERROR_CODE).send({ message: 'Карточка с указанным _id не найдена', error: e });
         return;
       }
       res.status(SERVER_ERROR_CODE).send({ message: 'На сервере произошла ошибка', error: e });
@@ -74,16 +74,16 @@ const dislikeCard = (req, res) => {
     {
       new: true,
       runValidators: true,
-    },
+    }.orFail(new Error('NotFoud')),
   )
     .then((card) => res.send({ data: card }))
     .catch((e) => {
-      if (e instanceof mongoose.Error.ValidationError) {
-        res.status(VALIDATION_ERROR_CODE).send({ message: 'Переданы некорректные данные для снятия лайка', error: e });
+      if (e instanceof mongoose.Error.CastError) {
+        res.status(VALIDATION_ERROR_CODE).send({ message: 'Передан некорректный _id карточки', error: e });
         return;
       }
-      if (e instanceof mongoose.Error.CastError) {
-        res.status(NOTFOUND_ERROR_CODE).send({ message: 'Передан несуществующий _id карточки', error: e });
+      if (e.message === 'NotFound') {
+        res.status(NOTFOUND_ERROR_CODE).send({ message: 'Карточка с указанным _id не найдена', error: e });
         return;
       }
       res.status(SERVER_ERROR_CODE).send({ message: 'На сервере произошла ошибка', error: e });
