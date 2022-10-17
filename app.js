@@ -23,8 +23,8 @@ app.use((req, res, next) => {
 
   next();
 });
-app.use(routes);
 app.use(apiLimiter);
 app.use(helmet());
+app.use(routes);
 
 app.listen(PORT, () => {});
