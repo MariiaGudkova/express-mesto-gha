@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
 const User = require('../models/user');
-
-const VALIDATION_ERROR_CODE = 400;
-const NOTFOUND_ERROR_CODE = 404;
-const SERVER_ERROR_CODE = 500;
+const { VALIDATION_ERROR_CODE, NOTFOUND_ERROR_CODE, SERVER_ERROR_CODE } = require('../utils/constants');
 
 const getUsers = (req, res) => {
   User.find({})
@@ -50,7 +47,7 @@ const updateUserProfile = (req, res) => {
   }).orFail()
     .then((user) => res.send({ data: user }))
     .catch((e) => {
-      if (e instanceof mongoose.Error.ValidationError || mongoose.Error.CastError) {
+      if (e instanceof mongoose.Error.ValidationError || e instanceof mongoose.Error.CastError) {
         res.status(VALIDATION_ERROR_CODE).send({ message: 'Переданы некорректные данные при обновлении профиля' });
         return;
       }
@@ -70,7 +67,7 @@ const updateUserProfileAvatar = (req, res) => {
   }).orFail()
     .then((user) => res.send({ data: user }))
     .catch((e) => {
-      if (e instanceof mongoose.Error.ValidationError || mongoose.Error.CastError) {
+      if (e instanceof mongoose.Error.ValidationError || e instanceof mongoose.Error.CastError) {
         res.status(VALIDATION_ERROR_CODE).send({ message: 'Переданы некорректные данные при обновлении аватара' });
         return;
       }

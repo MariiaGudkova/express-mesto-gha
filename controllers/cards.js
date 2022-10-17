@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 const Card = require('../models/card');
-
-const SUCCESS_CODE = 200;
-const VALIDATION_ERROR_CODE = 400;
-const NOTFOUND_ERROR_CODE = 404;
-const SERVER_ERROR_CODE = 500;
+const { VALIDATION_ERROR_CODE, NOTFOUND_ERROR_CODE, SERVER_ERROR_CODE } = require('../utils/constants');
 
 const getCards = (req, res) => {
   Card.find({})
@@ -74,7 +70,7 @@ const dislikeCard = (req, res) => {
       runValidators: true,
     },
   ).orFail()
-    .then((card) => res.status(SUCCESS_CODE).send({ data: card }))
+    .then((card) => res.send({ data: card }))
     .catch((e) => {
       if (e instanceof mongoose.Error.CastError) {
         res.status(VALIDATION_ERROR_CODE).send({ message: 'Передан некорректный _id карточки' });
