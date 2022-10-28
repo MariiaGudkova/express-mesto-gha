@@ -38,8 +38,8 @@ _В проекте были отработаны навыки<img src="https://m
 <img src="https://raw.githubusercontent.com/devicons/devicon/1119b9f84c0290e0f0b38982099a2bd027a48bf1/icons/eslint/eslint-original-wordmark.svg" width="40" height="40">&nbsp;
 </div>
 
-## **Ссылка на репозиторий проекта** <img src="https://media.giphy.com/media/tPwBc276qZ8HL08xAY/giphy.gif" width="70" height="70">
-![Репозиторий](https://github.com/MariiaGudkova/express-mesto-gha)
+## **Ссылка на репозиторий проекта** <img src="https://media.giphy.com/media/u9VeFrnDjK1jrA6Br4/giphy.gif" width="70" height="70">
+<a href ="https://github.com/MariiaGudkova/express-mesto-gha">Репозиторий</a>
 
 
 
