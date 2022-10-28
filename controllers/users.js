@@ -46,10 +46,10 @@ const createUser = async (req, res, next) => {
   bcrypt.hash(password, 10).then((hash) => User.create({
     name, about, avatar, email, password: hash,
   })).then((user) => {
-    const { password: p, ...data } = user;
     if (!user) {
       throw new BadRequestError('Переданы некорректные данные при создании пользователя');
     }
+    const { password: p, ...data } = JSON.parse(JSON.stringify(user));
     res.send({ data });
   })
     .catch((e) => {
