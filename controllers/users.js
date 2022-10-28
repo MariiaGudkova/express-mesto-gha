@@ -49,7 +49,7 @@ const createUser = async (req, res, next) => {
     if (!user) {
       throw new BadRequestError('Переданы некорректные данные при создании пользователя');
     }
-    res.send({ data: user });
+    res.send({ message: 'Вы успешно зарегистировались' });
   })
     .catch((e) => {
       if (e instanceof mongoose.Error.ValidationError) {
