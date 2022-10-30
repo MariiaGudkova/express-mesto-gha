@@ -40,10 +40,6 @@ const deleteCard = (req, res, next) => {
         next(new BadRequestError('Передан некорректный _id карточки'));
         return;
       }
-      if (e instanceof ForbiddenError) {
-        next(e);
-        return;
-      }
       if (e instanceof mongoose.Error.DocumentNotFoundError) {
         next(new NotFoundError('Карточка с указанным _id не найдена'));
         return;
