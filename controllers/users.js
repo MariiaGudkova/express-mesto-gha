@@ -5,7 +5,6 @@ const User = require('../models/user');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 const BadRequestError = require('../errors/bad_request_err');
-const UnauthorizedError = require('../errors/unauthorized_err');
 const NotFoundError = require('../errors/notfound_err');
 const ConflictError = require('../errors/conflict_err');
 
@@ -46,9 +45,6 @@ const createUser = async (req, res, next) => {
   bcrypt.hash(password, 10).then((hash) => User.create({
     name, about, avatar, email, password: hash,
   })).then((user) => {
-    if (!user) {
-      throw new BadRequestError('Переданы некорректные данные при создании пользователя');
-    }
     const { password: p, ...data } = JSON.parse(JSON.stringify(user));
     res.send({ data });
   })
@@ -113,15 +109,6 @@ const login = (req, res, next) => {
       res.send({ token });
     })
     .catch((e) => {
-      if (
-        e instanceof mongoose.Error.DocumentNotFoundError
-        || e instanceof mongoose.Error.ValidationError
-        || e instanceof mongoose.Error.CastError
-        || e instanceof UnauthorizedError
-      ) {
-        next(new UnauthorizedError('Неправильные почта или пароль'));
-        return;
-      }
       next(e);
     });
 };

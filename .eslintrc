@@ -11,11 +11,6 @@
   },
   "plugins": [],
   "rules": {
-    "no-console": "off",
-    "max-len": ["error", { "code": 200 }],
-    "func-names": ["error", "never"],
-    "consistent-return": "off",
-    "no-unused-vars": "off",
     "no-underscore-dangle": [
       "error", {
         "allow": [

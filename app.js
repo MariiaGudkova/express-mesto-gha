@@ -14,7 +14,7 @@ const apiLimiter = rateLimit({
   standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
   legacyHeaders: false, // Disable the `X-RateLimit-*` headers
 });
-const { SERVER_ERROR_CODE } = require('./utils/constants');
+const handleErros = require('./middlewares/handleErrors');
 
 mongoose.connect(MONGO_URL);
 
@@ -24,14 +24,6 @@ app.use(helmet());
 app.use(routes);
 
 app.use(errors());
-app.use((err, req, res, next) => {
-  const { statusCode = SERVER_ERROR_CODE, message: errorMessage } = err;
-  const message = statusCode === SERVER_ERROR_CODE
-    ? 'На сервере произошла ошибка'
-    : errorMessage;
-  res
-    .status(statusCode)
-    .send({ message });
-});
+app.use(handleErros);
 
 app.listen(PORT, () => {});
